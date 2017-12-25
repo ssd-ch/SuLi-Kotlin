@@ -6,40 +6,65 @@
     android:layout_height="match_parent"
     tools:context="net.ssdtic.suli.MainActivity">
 
+    <net.ssdtic.suli.NonSwipeableViewPager
+        android:id="@+id/pager_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/layout_main_tab"
         android:layout_width="0dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/theme500"
+        app:tabTextAppearance="@style/TabText"
+        app:tabTextColor="@color/grey600">
 
         <android.support.design.widget.TabItem
-            android:id="@+id/btn_tab_syllabus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Syllabus" />
+            android:id="@+id/item_syllabus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_tab_btn_syllabus" />
 
         <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Center" />
+            android:id="@+id/item_classroom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_tab_btn_classroom" />
 
         <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Right" />
+            android:id="@+id/item_notice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_tab_btn_notice" />
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tab4" />
+            android:id="@+id/item_material"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_tab_btn_material" />
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tab5" />
+            android:id="@+id/item_setting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_tab_btn_setting" />
     </android.support.design.widget.TabLayout>
+
 </android.support.constraint.ConstraintLayout>

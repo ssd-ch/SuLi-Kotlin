@@ -2,11 +2,35 @@ package net.ssdtic.suli
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val manager = supportFragmentManager
+
+        val viewPager = findViewById<NonSwipeableViewPager>(R.id.pager_main) as NonSwipeableViewPager
+
+        val adapter = MainFragmentPagerAdapter(manager)
+        viewPager.adapter = adapter
+        val tabLayout = findViewById<TabLayout>(R.id.layout_main_tab) as TabLayout
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager.setCurrentItem(tab.position, true)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
+
     }
 }
