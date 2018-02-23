@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //Syllabus
+    <string name="syllabus_form">http://gakumuweb1.shimane_u.ac.jp/shinwa/SYOutsideReferSearchInput</string>
+    <string name="syllabus_search">http://gakumuweb1.shimane_u.ac.jp/shinwa/SYOutsideReferSearchList</string>
+    <string name="syllabus_domain">"http://gakumuweb1.shimane_u.ac.jp</string>
+
+    //ShareStorage
+    <string name="shareStorage_hostName">cosmos.shimane_u.ac.jp</string>
+    <string name="shareStorage_domain">nafs.cosmos.shimane_u.ac.jp</string>
+    <string name="shareStorage_ip">10.16.1.16</string>
+    <string name="shareStorage_rootPath">/work/</string>
+
+    //Link
+    <string name="link_shimane_home">http://www.shimane_u.ac.jp/</string>
+    <string name="link_gakumu">https://gakumuweb.shimane_u.ac.jp/shinwa/campus/</string>
+    <string name="link_gipc">https://www.g_ipc.shimane_u.ac.jp/</string>
+    <string name="link_moodle">https://moodle.cerd.shimane_u.ac.jp/moodle/login/index.php</string>
+    <string name="link_question">https://enq.shimane_u.ac.jp/mt/</string>
+
+    //ClassroomDivide
+    <string name="buildingList">http://www.shimane_u.ac.jp/education/school_info/class_data/class_data01.html</string>
+
+    //CancelInfo
+    <string name="cancelInfo">http://www.kougi.shimane_u.ac.jp/selectweb/conduct_list.asp</string>
+
+    //Developer
+    <string name="ssd_ch">https://github.com/ssd-ch</string>
+
+    //adMob
+    <string name="banner_id">ca_app_pub_1786349309003923/1922990108</string>
+
+</resources>
