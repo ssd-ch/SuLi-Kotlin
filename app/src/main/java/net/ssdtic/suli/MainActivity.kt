@@ -3,11 +3,17 @@ package net.ssdtic.suli
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import io.realm.Realm
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Realm.init(this)
+        Realm.setDefaultConfiguration(RealmManagement.config)
+
         setContentView(R.layout.activity_main)
 
         val manager = supportFragmentManager

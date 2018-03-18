@@ -22,7 +22,7 @@
         <Preference
             android:key="pref_key_version"
             android:title="Version"
-            android:summary="1.0.0" />
+            android:summary="0.0" />
 
     </PreferenceCategory>
 
@@ -32,7 +32,7 @@
         <Preference android:title="島根大学ものづくり部Pim"
                     android:summary="The manufacturing department Pim is doing creative activities regardless of genre. Team members are now wanted! E-mail:pim.shimane@gmail.com" >
             <intent android:action="android.intent.action.VIEW"
-                android:data="https://ja-jp.facebook.com/Shimane.Pim/" />
+                android:data="@string/address_pim" />
         </Preference>
 
     </PreferenceCategory>
@@ -42,7 +42,7 @@
 
         <Preference android:title="Taichi Shishido" >
             <intent android:action="android.intent.action.VIEW"
-                android:data="@string/ssd_ch" />
+                android:data="@string/address_ssd_ch" />
         </Preference>
 
     </PreferenceCategory>
