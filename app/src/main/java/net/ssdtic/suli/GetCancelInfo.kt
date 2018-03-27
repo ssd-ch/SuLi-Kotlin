@@ -11,9 +11,10 @@ class GetCancelInfo {
 
     companion object {
 
-        private val cancelInfoUrl = MyApplication.getContext()?.getString(R.string.address_cancelInfo) ?: ""
+        private val cancelInfoUrl = MyApplication.getContext()?.getString(R.string.address_cancelInfo)
+                ?: ""
 
-        private var opt :Request? = null
+        private var opt: Request? = null
 
         fun start(completeHandler: () -> Unit, errorHandler: (String) -> Unit) {
 
@@ -31,7 +32,7 @@ class GetCancelInfo {
                     cancelInfo.deleteAllFromRealm()
                     println("GetCancelInfo : all cancelInfo data delete")
 
-                    for ((i,data) in writeData.withIndex()) {
+                    for ((i, data) in writeData.withIndex()) {
                         //マルチスレッドで処理したのでIDが競合するのを防ぐためにここで設定する
                         data.id = i + 1
                         //データを書き込む
@@ -50,7 +51,7 @@ class GetCancelInfo {
 
         private fun getData(page: Int, data: Array<CancelInfo>, completeHandler: (Array<CancelInfo>) -> Unit, errorHandler: (String) -> Unit) {
 
-            var writeData : Array<CancelInfo> = data
+            var writeData = data
 
             try {
                 println("GetCancelInfo : No.$page data init")
@@ -98,8 +99,7 @@ class GetCancelInfo {
                                 if (doc.size < (if (page == 1) 1 else 2)) {
                                     //これ以上読み込むページがない(処理が完了)
                                     completeHandler(writeData)
-                                }
-                                else {
+                                } else {
                                     //次のページを読み込む
                                     getData(page + 1, writeData, completeHandler, errorHandler)
                                 }
