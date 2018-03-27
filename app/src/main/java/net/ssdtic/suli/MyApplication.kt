@@ -6,7 +6,7 @@ import android.content.Context
 class MyApplication : Application() {
 
     companion object {
-        var mContext: Context? = null
+        private var mContext: Context? = null
 
         fun getContext(): Context? = mContext
     }
