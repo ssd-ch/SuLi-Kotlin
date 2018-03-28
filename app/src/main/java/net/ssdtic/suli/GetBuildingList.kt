@@ -49,7 +49,6 @@ class GetBuildingList {
                                     for (i in 0 until doc.size) {
                                         //書き込むデータを作成
                                         val writeData = realm.createObject(Building::class.java, i)
-                                        //writeData.id = i
                                         writeData.building_name = doc[i].text().replace("教室配当表_", "").replace("_", " ")
                                         writeData.url = doc[i].attr("abs:href")
                                         //データをRealmに書き込む

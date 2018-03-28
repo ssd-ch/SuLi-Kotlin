@@ -15,18 +15,8 @@ class NoticeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        // Obtain a Realm instance
-        val realm = Realm.getDefaultInstance()
-
-        realm.beginTransaction()
-
-        //... オブジェクトの追加や更新 ...
-
-        realm.commitTransaction()
-
         GetCancelInfo.start({
-            Log.d("Info", "complete1")
-            Log.d("Info", "complete2")
+            Log.d("Info", "complete cancelInfo")
         }, { message -> Log.d("Info", "message: $message") })
 
 //        return inflater!!.inflate(R.layout.fragment_notice, null)
