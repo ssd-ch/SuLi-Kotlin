@@ -38,5 +38,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        UpdateAllData.start({ println("MainActivity : complete") }, { println("MainActivity : error") })
+
     }
 }

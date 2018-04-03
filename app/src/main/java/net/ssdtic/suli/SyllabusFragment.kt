@@ -15,10 +15,6 @@ class SyllabusFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        GetSyllabusForm.start({
-            Log.d("Info", "complete syllabus")
-        }, { message -> Log.d("Info", "message: $message") })
-
         return inflater!!.inflate(R.layout.fragment_syllabus, null)
     }
 
