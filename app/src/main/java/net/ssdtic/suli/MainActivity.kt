@@ -16,12 +16,9 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val manager = supportFragmentManager
-
         val viewPager = findViewById<NonSwipeableViewPager>(R.id.pager_main) as NonSwipeableViewPager
 
-        val adapter = MainFragmentPagerAdapter(manager)
-        viewPager.adapter = adapter
+        viewPager.adapter = MainFragmentPagerAdapter(supportFragmentManager)
         val tabLayout = findViewById<TabLayout>(R.id.layout_main_tab) as TabLayout
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 

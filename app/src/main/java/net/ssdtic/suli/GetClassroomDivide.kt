@@ -4,6 +4,7 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.result.Result
 import io.realm.Realm
+import kotlinx.coroutines.experimental.*
 import org.jsoup.Jsoup
 
 
@@ -23,33 +24,32 @@ class GetClassroomDivide {
             //建物別のリンクを取得
             GetBuildingList.start({
 
-                //Realmに接続
-                val realm = Realm.getDefaultInstance()
+                launch {
 
-                //ClassroomDivideのすべてのオブジェクトを取得
-                val objects = realm.where(ClassroomDivide::class.java).findAll()
-                //トランザクションを開始
-                realm.executeTransaction {
-                    //取得したすべてのオブジェクトを削除
-                    objects.deleteAllFromRealm()
-                    println("GetClassroomDivide : all ClassroomDivide data delete")
+                    //Realmに接続
+                    val realm = Realm.getDefaultInstance()
+
+                    //ClassroomDivideのすべてのオブジェクトを取得
+                    val objects = realm.where(ClassroomDivide::class.java).findAll()
+                    //トランザクションを開始
+                    realm.executeTransaction {
+                        //取得したすべてのオブジェクトを削除
+                        objects.deleteAllFromRealm()
+                        println("GetClassroomDivide : all ClassroomDivide data delete")
+                    }
+
+                    //Buildingのすべてのオブジェクトを取得
+                    val buildings = realm.where(Building::class.java).findAll()
+
+                    //すべてのページの配当表を取得
+                    for (building in buildings) {
+                        println("GetClassroomDivide : No.${building.id} data init")
+                        scrapingClassroomDivide(building.id, building.url).await()
+                    }
+
+                    //すべてのスレッドの処理が完了
+                    completeHandler()
                 }
-
-                //Buildingのすべてのオブジェクトを取得
-                val buildings = realm.where(Building::class.java).findAll()
-
-                //スレッドを管理するグループを作成
-
-                //スレッドの登録
-
-                //すべてのページの配当表を取得
-                for (building in buildings) {
-                    println("GetClassroomDivide : No.${building.id} data init")
-                    scrapingClassroomDivide(building.id, building.url)
-                }
-
-                //すべてのスレッドの処理が完了
-                completeHandler()
 
 
             }, { message ->
@@ -58,7 +58,7 @@ class GetClassroomDivide {
             })
         }
 
-        private fun scrapingClassroomDivide(building_id: Int, url: String) {
+        private fun scrapingClassroomDivide(building_id: Int, url: String) = async(CommonPool) {
 
             try {
 
@@ -173,8 +173,8 @@ class GetClassroomDivide {
                                                 dayCache = tdText[0]
                                                 val day = Regex(tdText[0]).find("月火水木金土日")?.range?.first
                                                         ?: -1
-                                                val time = StringUtil.matcherSubString(tdText[1], "\\..*").replace("\\.".toRegex(), "").toInt()
-                                                val id = ("%02d".format(building_id) + "%02d".format(pn) + "$day$time").toInt() / 2
+                                                val time = StringUtil.matcherSubString(tdText[1], "\\..*").replace("\\.".toRegex(), "").toInt() / 2
+                                                val id = "%02d".format(building_id) + "%02d".format(pn) + "$day$time"
                                                 pn += 1
                                                 val lecInfo = extractionLecture(tdText[2])
 
@@ -202,6 +202,9 @@ class GetClassroomDivide {
 
                                 }
 
+                                //Realmを閉じる
+                                realm.close()
+
                                 println("GetClassroomDivide : No.$building_id data complete")
                             }
 
@@ -209,8 +212,6 @@ class GetClassroomDivide {
 
                     }
                 }
-
-                //処理の終了を通知
 
             } catch (error: Exception) {
                 println("got an error creating the request: $error")
